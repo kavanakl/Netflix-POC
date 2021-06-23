@@ -27,7 +27,7 @@ function getMovies(url){
         const movie1 = document.createElement('div');
         movie1.classList.add('movie');
         movie1.innerHTML = `
-        <a href="#"  class="toggle" onclick="toggle('${data[i].poster_path}', '${data[i].overview}', '${data[i].title}');">
+        <a href="#"  class="toggle" onclick="toggle('${data[i].backdrop_path}', '${data[i].overview}', '${data[i].title}');">
          <img src="${IMG_URL+poster_path}" >
         </a>
          `
