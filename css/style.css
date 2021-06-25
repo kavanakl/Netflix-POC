@@ -11,17 +11,13 @@ body{
 
 nav{
     padding-top: 0;
-    padding-bottom: 10px;
-    
+    padding-bottom: 10px;    
 }
-
 
 main{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    
-    
+    justify-content: center;   
 }
 main div{
     
@@ -58,8 +54,7 @@ i{
     align-items: center;
     flex: 1;
     text-align: left;
-    transform: translate(-30px,-10px);
-    
+    transform: translate(-30px,-10px);    
 }
 
 .nav-links ul{
@@ -70,8 +65,7 @@ i{
     list-style: none;
     display: inline-block;
     padding: 8px 12px 10px 12px;
-    position: relative;
-       
+    position: relative;     
 }
 
 .nav-links ul li a{
@@ -82,6 +76,7 @@ i{
 }
 
 .nav-links ul li.text::after{
+    
     content: '';
     width: 0%;
     height: 2px;
@@ -145,7 +140,6 @@ td i{
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
     z-index: 1001;
-    transform: translateX(-8px);
     overflow-y: scroll;
 }
 
@@ -199,3 +193,5 @@ td i{
     transform: translateY(-3px);
     text-align: justify;
 }
+
+ 

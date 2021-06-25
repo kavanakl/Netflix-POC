@@ -3,17 +3,30 @@ const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_URL = BASE_URL + 'discover/movie?sort_by=popularity.desc&' + API_KEY;
 const IMG_URL = 'https://image.tmdb.org/t/p/w500'
 
-
 getMovies(API_URL);
+
+function activeLinkControls(NAV_URL){
+    
+        if(NAV_URL == 'Popular'){
+            Popular_Movies = BASE_URL + 'discover/movie?sort_by=popularity.desc&' + API_KEY;
+            getMovies(Popular_Movies);
+        }
+        else{
+            Upcoming_Movies = BASE_URL + 'movie/upcoming?' + API_KEY;
+            getMovies(Upcoming_Movies);
+        }
+    
+}
+
+
 
 function getMovies(url){
 
+    
     fetch(url).then(res => res.json()).then(data => {
         console.log(data.results);
         showMovies(data.results);
-    })
-    
-    
+    })   
 }
 
  function showMovies(data){
@@ -27,23 +40,23 @@ function getMovies(url){
         const movie1 = document.createElement('div');
         movie1.classList.add('movie');
         movie1.innerHTML = `
-        <a href="#"  class="toggle" onclick="toggle('${data[i].backdrop_path}', '${data[i].overview}', '${data[i].title}');">
+        <a href="#"  class="toggle" onclick="toggle('${data[i].id}');">
          <img src="${IMG_URL+poster_path}" >
         </a>
          `
-        
-       i++;
-        console.log(i);
-
+         i++;
         main.appendChild(movie1);   
         
-    });
-
-    
-    
+    });    
 }
 
-function toggle(poster,overview,title){
+function toggle(id){
+    
+    console.log(id);
+    url = BASE_URL + 'movie/' + id + '?' + API_KEY;
+    fetch(url).then(movies => movies.json()).then(details => {
+        console.log(details.results);
+       
     
     document.body.style.overflow = "hidden";
     document.getElementById('main-popup').style.display = "flex";
@@ -58,25 +71,24 @@ function toggle(poster,overview,title){
                 <img src="images/close.png" class="close">
             </div>
 
-            <img src="${IMG_URL+poster}" class="overlay-image">
+            <img src="${IMG_URL+details.backdrop_path}" class="overlay-image">
 
             <div class="movie-info">
-              ${title}
+              ${details.title}
             </div>
 
             <div class="overview">
-              ${overview}
+              ${details.overview}
             </div>
         
         `
-        
-
         blur.appendChild(overlay);
 
         $(' .close').click(function(){
             document.getElementById('main-popup').style.display = "none";
             document.body.style.overflow = "inherit";
         });
+    });
     
 }
 
